@@ -8,7 +8,7 @@ import Container from "@mui/material/Container";
 import StudentsList from "./StudentsList";
 import { nanoid } from "nanoid";
 
-const RosterAccordion = ({ teachers, students }) => {
+const RosterAccordion = ({ teachers }) => {
   const accordionComponents = teachers.map((teacher) => {
     return (
       <Accordion key={nanoid()}>

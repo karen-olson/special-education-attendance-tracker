@@ -37,12 +37,7 @@ const App = () => {
           <NewMeetingForm />
         </Route>
         <Route exact path="/rosters">
-          {/* <TeachersDrawer
-            teachers={teachers}
-            students={students}
-            meetings={meetings}
-          /> */}
-          <RosterAccordion teachers={teachers} students={students} />
+          <RosterAccordion teachers={teachers} />
         </Route>
         <Route exact path="/meetings">
           <MeetingsAccordion meetings={meetings} />

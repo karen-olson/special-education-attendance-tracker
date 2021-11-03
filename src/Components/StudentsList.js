@@ -13,7 +13,11 @@ const StudentsList = ({ teacherId }) => {
         console.log("students: ", students);
         return setStudentsToDisplay(students);
       });
-  }, []);
+
+    return function cleanup() {
+      setStudentsToDisplay([]);
+    };
+  }, [teacherId]);
 
   const studentComponents = studentsToDisplay.map((student) => (
     <ListItem button key={nanoid()}>
