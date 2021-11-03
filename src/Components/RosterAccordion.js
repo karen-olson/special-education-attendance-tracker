@@ -22,6 +22,7 @@ const RosterAccordion = ({ teachers }) => {
           </Typography>
         </AccordionSummary>
         <AccordionDetails>
+          <em>Select a student to view meetings.</em>
           <StudentsList teacherId={teacher.id} />
         </AccordionDetails>
       </Accordion>
@@ -34,18 +35,6 @@ const RosterAccordion = ({ teachers }) => {
         Rosters
       </Typography>
       {accordionComponents}
-      {/* <Accordion>
-        <AccordionSummary
-          expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel1a-content"
-          id="panel1a-header"
-        >
-          <Typography>Teacher Name</Typography>
-        </AccordionSummary>
-        <AccordionDetails>
-          <StudentsList teacherId={1} />
-        </AccordionDetails>
-      </Accordion> */}
     </Container>
   );
 };

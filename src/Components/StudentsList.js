@@ -2,9 +2,12 @@ import React, { useState, useEffect } from "react";
 import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
 import { nanoid } from "nanoid";
+import { useHistory } from "react-router-dom";
 
 const StudentsList = ({ teacherId }) => {
   const [studentsToDisplay, setStudentsToDisplay] = useState([]);
+
+  const history = useHistory();
 
   useEffect(() => {
     fetch(`http://localhost:9292/teachers/${teacherId}/students`)
@@ -19,8 +22,12 @@ const StudentsList = ({ teacherId }) => {
     };
   }, [teacherId]);
 
+  function handleClick(student) {
+    history.push(`/meetings/teachers/${teacherId}/students/${student.id}`);
+  }
+
   const studentComponents = studentsToDisplay.map((student) => (
-    <ListItem button key={nanoid()}>
+    <ListItem button key={nanoid()} onClick={() => handleClick(student)}>
       <ListItemText primary={student.first_name + " " + student.last_name} />
     </ListItem>
   ));

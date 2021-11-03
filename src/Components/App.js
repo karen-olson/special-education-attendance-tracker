@@ -6,13 +6,12 @@ import CssBaseline from "@mui/material/CssBaseline";
 
 import NavTabs from "./NavTabs";
 import NewMeetingForm from "./NewMeetingForm";
-import MeetingsAccordion from "./MeetingsAccordion";
+import MeetingsAccordion from "./MeetingsContainer";
 import RosterAccordion from "./RosterAccordion";
 
 const App = () => {
   const [teachers, setTeachers] = useState([]);
   const [students, setStudents] = useState([]);
-  const [meetings, setMeetings] = useState([]);
 
   useEffect(() => {
     fetch("http://localhost:9292/teachers")
@@ -22,10 +21,6 @@ const App = () => {
     fetch("http://localhost:9292/students")
       .then((resp) => resp.json())
       .then((students) => setStudents(students));
-
-    fetch("http://localhost:9292/meetings")
-      .then((resp) => resp.json())
-      .then((meetings) => setMeetings(meetings));
   }, []);
 
   return (
@@ -39,8 +34,8 @@ const App = () => {
         <Route exact path="/rosters">
           <RosterAccordion teachers={teachers} />
         </Route>
-        <Route exact path="/meetings">
-          <MeetingsAccordion meetings={meetings} />
+        <Route exact path="/meetings/teachers/:id/students/:student_id">
+          <MeetingsAccordion teachers={teachers} students={students} />
         </Route>
       </Switch>
     </>
