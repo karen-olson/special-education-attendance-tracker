@@ -7,7 +7,7 @@ import CssBaseline from "@mui/material/CssBaseline";
 import NavTabs from "./NavTabs";
 import NewMeetingForm from "./NewMeetingForm";
 import MeetingsAccordion from "./MeetingsAccordion";
-import TeachersDrawer from "./TeachersDrawer";
+import RosterAccordion from "./RosterAccordion";
 
 const App = () => {
   const [teachers, setTeachers] = useState([]);
@@ -36,11 +36,16 @@ const App = () => {
         <Route exact path="/meetings/new">
           <NewMeetingForm />
         </Route>
-        <Route path="/rosters">
-          <TeachersDrawer />
+        <Route exact path="/rosters">
+          {/* <TeachersDrawer
+            teachers={teachers}
+            students={students}
+            meetings={meetings}
+          /> */}
+          <RosterAccordion teachers={teachers} students={students} />
         </Route>
         <Route exact path="/meetings">
-          <MeetingsAccordion />
+          <MeetingsAccordion meetings={meetings} />
         </Route>
       </Switch>
     </>

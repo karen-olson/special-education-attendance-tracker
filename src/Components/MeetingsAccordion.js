@@ -6,7 +6,7 @@ import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import Container from "@mui/material/Container";
 
-const MeetingsAccordion = () => {
+const MeetingsAccordion = ({ meetings }) => {
   return (
     <Container maxWidth="md">
       <Typography variant="h2" gutterBottom align="center">

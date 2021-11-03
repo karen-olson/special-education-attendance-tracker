@@ -11,10 +11,21 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import Select from "@mui/material/Select";
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+// import FormHelperText from "@mui/material/FormHelperText";
 
 const theme = createTheme();
 
 const NewMeetingForm = () => {
+  const [currentStudent, setCurrentStudent] = React.useState("");
+  const [currentTeacher, setCurrentTeacher] = React.useState("");
+
+  const handleChange = (event) => {
+    // setCurrentStudent(event.target.value);
+  };
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -52,47 +63,58 @@ const NewMeetingForm = () => {
             sx={{ mt: 3 }}
           >
             <Grid container spacing={2}>
-              {/* <Grid item xs={12} sm={6}>
-                <TextField
-                  autoComplete="given-name"
-                  name="firstName"
-                  required
+              <Grid item xs={12}>
+                <InputLabel id="teacher-select-label">Teacher</InputLabel>
+                <Select
+                  labelid="teacher-select"
+                  id="teacher-select"
+                  value={currentTeacher}
+                  label="Teacher"
+                  onChange={handleChange}
                   fullWidth
-                  id="firstName"
-                  label="First Name"
-                  autoFocus
+                >
+                  <MenuItem value={10}>Student A</MenuItem>
+                  <MenuItem value={20}>Student B</MenuItem>
+                  <MenuItem value={30}>Student C</MenuItem>
+                </Select>
+              </Grid>
+              <Grid item xs={12}>
+                <InputLabel id="student-select-label">Student</InputLabel>
+                <Select
+                  labelid="student-select-label"
+                  id="student-select"
+                  value={currentStudent}
+                  label="Student"
+                  onChange={handleChange}
+                  fullWidth
+                  // InputLabelProps={{
+                  //   shrink: true,
+                  // }}
+                >
+                  <MenuItem value={10}>Student A</MenuItem>
+                  <MenuItem value={20}>Student B</MenuItem>
+                  <MenuItem value={30}>Student C</MenuItem>
+                </Select>
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  id="duration"
+                  label="Duration"
+                  type="number"
+                  placeholder="# of minutes"
+                  InputLabelProps={{
+                    shrink: true,
+                  }}
                 />
               </Grid>
-              <Grid item xs={12} sm={6}>
+              <Grid item xs={12}>
+                <InputLabel id="notes-label">Notes</InputLabel>
                 <TextField
-                  required
-                  fullWidth
-                  id="lastName"
-                  label="Last Name"
-                  name="lastName"
-                  autoComplete="family-name"
-                />
-              </Grid> */}
-              <Grid item xs={12}>
-                {/* Add dropdown for educator */}
-                Educator Dropdown
-              </Grid>
-              <Grid item xs={12}>
-                {/* Add dropdown for student */}
-                Student Dropdown
-              </Grid>
-              <Grid item xs={12}>
-                {/* Add number input for duration */}
-                Number dropdown? for duration
-              </Grid>
-              <Grid item xs={12}>
-                {/* Add text input for notes */}
-                <TextField
+                  labelid="notes-label"
                   fullWidth
                   id="notes"
                   label="Notes"
                   name="notes"
-                  // autoComplete="family-name"
                 />
               </Grid>
             </Grid>
