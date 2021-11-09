@@ -9,7 +9,6 @@ const NavTabs = () => {
     <Box sx={{ width: "100%", mb: 4 }}>
       <Tabs value={false}>
         <Tab label="Rosters" component={NavLink} to="/rosters" />
-        {/* <Tab label="Meetings" component={NavLink} to="/meetings" /> */}
         <Tab label="New Meeting" component={NavLink} to="/meetings/new" />
       </Tabs>
     </Box>

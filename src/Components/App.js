@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from "react";
 
-import { Route, Switch } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 
 import CssBaseline from "@mui/material/CssBaseline";
+import { css } from "@emotion/react";
+import ClipLoader from "react-spinners/ClipLoader";
 
 import NavTabs from "./NavTabs";
 import NewMeetingForm from "./NewMeetingForm";
-import MeetingsAccordion from "./MeetingsContainer";
+import MeetingsContainer from "./MeetingsContainer";
 import RosterAccordion from "./RosterAccordion";
 
 const App = () => {
@@ -23,21 +25,59 @@ const App = () => {
       .then((students) => setStudents(students));
   }, []);
 
+  function onFormSubmit(formData) {
+    const configObj = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    };
+
+    fetch("http://localhost:9292/meetings", configObj).then((resp) =>
+      resp.json().then((meeting) => console.log(meeting))
+    );
+  }
+
+  const override = css`
+    display: block;
+    margin: 0 auto;
+    border-color: blue;
+  `;
+
   return (
     <>
-      <CssBaseline />
-      <NavTabs />
-      <Switch>
-        <Route exact path="/meetings/new">
-          <NewMeetingForm />
-        </Route>
-        <Route exact path="/rosters">
-          <RosterAccordion teachers={teachers} />
-        </Route>
-        <Route exact path="/meetings/teachers/:id/students/:student_id">
-          <MeetingsAccordion teachers={teachers} students={students} />
-        </Route>
-      </Switch>
+      {teachers.length > 0 && students.length > 0 ? (
+        <>
+          <CssBaseline />
+          <NavTabs />
+          <Routes>
+            <Route
+              index
+              path="rosters"
+              element={<RosterAccordion teachers={teachers} />}
+            />
+            <Route
+              path="meetings/teachers/:id/students/:student_id"
+              element={
+                <MeetingsContainer teachers={teachers} students={students} />
+              }
+            />
+            <Route
+              path="meetings/new"
+              element={
+                <NewMeetingForm
+                  teachers={teachers}
+                  students={students}
+                  onFormSubmit={onFormSubmit}
+                />
+              }
+            />
+          </Routes>
+        </>
+      ) : (
+        <ClipLoader color="blue" loading="true" css={override} size={150} />
+      )}
     </>
   );
 };

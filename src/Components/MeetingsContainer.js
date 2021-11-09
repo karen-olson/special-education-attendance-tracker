@@ -9,18 +9,14 @@ const MeetingsContainer = ({ teachers, students }) => {
 
   const params = useParams();
 
-  const teacherId = params.id;
-  const studentId = params.student_id;
+  const teacherId = parseInt(params.id);
+  const studentId = parseInt(params.student_id);
 
-  const teacherObject = teachers.find(
-    (teacher) => teacher.id === parseInt(teacherId)
-  );
-  const teacherName = teacherObject.first_name + " " + teacherObject.last_name;
+  const teacher = teachers.find((teacher) => teacher.id === teacherId);
+  const teacherName = teacher.first_name + " " + teacher.last_name;
 
-  const studentObject = students.find(
-    (student) => student.id === parseInt(studentId)
-  );
-  const studentName = studentObject.first_name + " " + studentObject.last_name;
+  const student = students.find((student) => student.id === studentId);
+  const studentName = student.first_name + " " + student.last_name;
 
   useEffect(() => {
     fetch(
@@ -28,17 +24,8 @@ const MeetingsContainer = ({ teachers, students }) => {
     )
       .then((resp) => resp.json())
       .then((meetings) => {
-        console.log("meetings: ", meetings);
-        if (typeof meetings === "object") {
-          setMeetingsToDisplay([meetings]);
-        } else {
-          setMeetingsToDisplay(meetings);
-        }
+        setMeetingsToDisplay(meetings);
       });
-
-    return function cleanup() {
-      setMeetingsToDisplay([]);
-    };
   }, [teacherId, studentId]);
 
   function handleDeleteMeeting(meetingToDelete) {

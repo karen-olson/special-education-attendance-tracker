@@ -2,18 +2,17 @@ import React, { useState, useEffect } from "react";
 import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
 import { nanoid } from "nanoid";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const StudentsList = ({ teacherId }) => {
   const [studentsToDisplay, setStudentsToDisplay] = useState([]);
 
-  const history = useHistory();
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetch(`http://localhost:9292/teachers/${teacherId}/students`)
       .then((resp) => resp.json())
       .then((students) => {
-        console.log("students: ", students);
         return setStudentsToDisplay(students);
       });
 
@@ -23,7 +22,7 @@ const StudentsList = ({ teacherId }) => {
   }, [teacherId]);
 
   function handleClick(student) {
-    history.push(`/meetings/teachers/${teacherId}/students/${student.id}`);
+    navigate(`/meetings/teachers/${teacherId}/students/${student.id}`);
   }
 
   const studentComponents = studentsToDisplay.map((student) => (
