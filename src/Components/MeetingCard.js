@@ -8,6 +8,7 @@ import { IconButton } from "@mui/material";
 import { Typography } from "@mui/material";
 
 const MeetingCard = ({ meeting, teacher, student, handleDeleteMeeting }) => {
+  
   const configObj = {
     method: "DELETE",
     headers: {
@@ -20,7 +21,6 @@ const MeetingCard = ({ meeting, teacher, student, handleDeleteMeeting }) => {
     fetch(`http://localhost:9292/meetings/${meeting.id}`, configObj)
       .then((resp) => resp.json())
       .then((meeting) => handleDeleteMeeting(meeting));
-    //   re-route to confirmation page?
   }
 
   return (

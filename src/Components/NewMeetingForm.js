@@ -50,14 +50,6 @@ const NewMeetingForm = ({ teachers, students, onFormSubmit }) => {
     });
   };
 
-  // Debug issue with using .map to programattically create MenuItem components for teachers and students.
-  // const teacherMenuItems = teachers.map((teacher) => {
-  //   <MenuItem value={teacher.id}>
-  //     {teacher.first_name + " " + teacher.last_name}
-  //     Teacher
-  //   </MenuItem>;
-  // });
-
   return (
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">
