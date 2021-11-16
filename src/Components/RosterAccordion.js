@@ -19,6 +19,8 @@ const RosterAccordion = ({ teachers }) => {
         >
           <Typography>
             {teacher.first_name + " " + teacher.last_name}
+            <br/>
+            <em>{teacher.specialty}</em>
           </Typography>
         </AccordionSummary>
         <AccordionDetails>
