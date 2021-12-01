@@ -9,6 +9,8 @@ import StudentsList from "./StudentsList";
 import { nanoid } from "nanoid";
 
 const RosterAccordion = ({ teachers }) => {
+  // Display all teachers
+  // Render StudentsList for each teacher
   const accordionComponents = teachers.map((teacher) => {
     return (
       <Accordion key={nanoid()}>
@@ -17,10 +19,12 @@ const RosterAccordion = ({ teachers }) => {
           aria-controls="panel1a-content"
           id="panel1a-header"
         >
-          <Typography>
+          <Typography variant="h6" p={1}>
             {teacher.first_name + " " + teacher.last_name}
-            <br/>
-            <em>{teacher.specialty}</em>
+            <br />
+            <Typography variant="body1" pt={1} pl={2}>
+              {teacher.specialty}
+            </Typography>
           </Typography>
         </AccordionSummary>
         <AccordionDetails>
@@ -32,9 +36,9 @@ const RosterAccordion = ({ teachers }) => {
   });
 
   return (
-    <Container maxWidth="md">
-      <Typography variant="h2" gutterBottom align="center">
-        Rosters
+    <Container maxWidth="md" sx={{ pt: 5 }}>
+      <Typography variant="h4" gutterBottom align="center">
+        Attendance Logs
       </Typography>
       {accordionComponents}
     </Container>

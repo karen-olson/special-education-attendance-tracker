@@ -5,6 +5,7 @@ import Container from "@mui/material/Container";
 import MeetingCard from "./MeetingCard";
 
 const MeetingsContainer = ({ teachers, students }) => {
+  // Display all meetings between a teacher and a student (teacher.student[?].meetings)
   const [meetingsToDisplay, setMeetingsToDisplay] = useState([]);
 
   const params = useParams();
@@ -17,6 +18,8 @@ const MeetingsContainer = ({ teachers, students }) => {
 
   const student = students.find((student) => student.id === studentId);
   const studentName = student.first_name + " " + student.last_name;
+
+  console.log(meetingsToDisplay);
 
   useEffect(() => {
     fetch(
@@ -47,9 +50,13 @@ const MeetingsContainer = ({ teachers, students }) => {
 
   return (
     <Container maxWidth="md">
-      <Typography variant="h2" gutterBottom align="center">
+      <Typography variant="h4" gutterBottom align="center">
         Meetings
       </Typography>
+      <Typography variant="body1">
+        Meetings between {teacherName} ({teacher.specialty}) and {studentName}:
+      </Typography>
+      <br />
       {meetingCards}
     </Container>
   );

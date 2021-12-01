@@ -5,6 +5,9 @@ import { nanoid } from "nanoid";
 import { useNavigate } from "react-router-dom";
 
 const StudentsList = ({ teacherId }) => {
+  // Display all students for a given teacher
+  // Navigate to MeetingsContainer (for a given teacher & student pair)
+
   const [studentsToDisplay, setStudentsToDisplay] = useState([]);
 
   const navigate = useNavigate();

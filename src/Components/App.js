@@ -7,6 +7,7 @@ import { css } from "@emotion/react";
 import ClipLoader from "react-spinners/ClipLoader";
 
 import NavTabs from "./NavTabs";
+import Home from "./Home";
 import NewMeetingForm from "./NewMeetingForm";
 import MeetingsContainer from "./MeetingsContainer";
 import RosterAccordion from "./RosterAccordion";
@@ -25,13 +26,13 @@ const App = () => {
       .then((students) => setStudents(students));
   }, []);
 
-  function onFormSubmit(formData) {
+  function onFormSubmit(newMeeting) {
     const configObj = {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(formData),
+      body: JSON.stringify(newMeeting),
     };
 
     fetch("http://localhost:9292/meetings", configObj).then((resp) =>
@@ -52,8 +53,9 @@ const App = () => {
           <CssBaseline />
           <NavTabs />
           <Routes>
+            <Route index path="/" element={<Home />} />
             <Route
-              index
+              // index
               path="rosters"
               element={<RosterAccordion teachers={teachers} />}
             />
