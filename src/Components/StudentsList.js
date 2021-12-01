@@ -4,31 +4,14 @@ import ListItemText from "@mui/material/ListItemText";
 import { nanoid } from "nanoid";
 import { useNavigate } from "react-router-dom";
 
-const StudentsList = ({ teacherId }) => {
-  // Display all students for a given teacher
-  // Navigate to MeetingsContainer (for a given teacher & student pair)
-
-  const [studentsToDisplay, setStudentsToDisplay] = useState([]);
-
+const StudentsList = ({ teacher }) => {
   const navigate = useNavigate();
 
-  useEffect(() => {
-    fetch(`http://localhost:9292/teachers/${teacherId}/students`)
-      .then((resp) => resp.json())
-      .then((students) => {
-        return setStudentsToDisplay(students);
-      });
-
-    return function cleanup() {
-      setStudentsToDisplay([]);
-    };
-  }, [teacherId]);
-
   function handleClick(student) {
-    navigate(`/meetings/teachers/${teacherId}/students/${student.id}`);
+    navigate(`/meetings/teachers/${teacher.id}/students/${student.id}`);
   }
 
-  const studentComponents = studentsToDisplay.map((student) => (
+  const studentComponents = teacher.students_list.map((student) => (
     <ListItem button key={nanoid()} onClick={() => handleClick(student)}>
       <ListItemText primary={student.first_name + " " + student.last_name} />
     </ListItem>

@@ -19,8 +19,6 @@ const MeetingsContainer = ({ teachers, students }) => {
   const student = students.find((student) => student.id === studentId);
   const studentName = student.first_name + " " + student.last_name;
 
-  console.log(meetingsToDisplay);
-
   useEffect(() => {
     fetch(
       `http://localhost:9292/teachers/${teacherId}/students/${studentId}/meetings`

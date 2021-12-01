@@ -28,7 +28,7 @@ const AttendanceLogCard = ({ teachers }) => {
         </AccordionSummary>
         <AccordionDetails>
           <em>Select a student to view meetings.</em>
-          <StudentsList teacherId={teacher.id} />
+          <StudentsList teacher={teacher} />
         </AccordionDetails>
       </Accordion>
     );

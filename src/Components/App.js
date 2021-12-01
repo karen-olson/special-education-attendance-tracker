@@ -42,6 +42,8 @@ const App = () => {
     );
   }
 
+  console.log("teachers: ", teachers);
+
   const override = css`
     display: block;
     margin: 0 auto;
