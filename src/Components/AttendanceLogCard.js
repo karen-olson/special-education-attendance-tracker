@@ -1,17 +1,16 @@
 import React from "react";
-import Accordion from "@mui/material/Accordion";
-import AccordionSummary from "@mui/material/AccordionSummary";
-import AccordionDetails from "@mui/material/AccordionDetails";
-import Typography from "@mui/material/Typography";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import Container from "@mui/material/Container";
 import StudentsList from "./StudentsList";
 import { nanoid } from "nanoid";
+import {
+  Accordion,
+  AccordionSummary,
+  AccordionDetails,
+  Typography,
+} from "@mui/material";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
-const RosterAccordion = ({ teachers }) => {
-  // Display all teachers
-  // Render StudentsList for each teacher
-  const accordionComponents = teachers.map((teacher) => {
+const AttendanceLogCard = ({ teachers }) => {
+  const attendanceLogCards = teachers.map((teacher) => {
     return (
       <Accordion key={nanoid()}>
         <AccordionSummary
@@ -35,14 +34,7 @@ const RosterAccordion = ({ teachers }) => {
     );
   });
 
-  return (
-    <Container maxWidth="md" sx={{ pt: 5 }}>
-      <Typography variant="h4" gutterBottom align="center">
-        Attendance Logs
-      </Typography>
-      {accordionComponents}
-    </Container>
-  );
+  return <>{attendanceLogCards}</>;
 };
 
-export default RosterAccordion;
+export default AttendanceLogCard;

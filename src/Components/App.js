@@ -10,9 +10,11 @@ import NavTabs from "./NavTabs";
 import Home from "./Home";
 import NewMeetingForm from "./NewMeetingForm";
 import MeetingsContainer from "./MeetingsContainer";
-import RosterAccordion from "./RosterAccordion";
+import AttendanceLogContainer from "./AttendanceLogContainer";
 
 const App = () => {
+  // Update API so it sends nested students from /teachers
+
   const [teachers, setTeachers] = useState([]);
   const [students, setStudents] = useState([]);
 
@@ -57,7 +59,7 @@ const App = () => {
             <Route
               // index
               path="rosters"
-              element={<RosterAccordion teachers={teachers} />}
+              element={<AttendanceLogContainer teachers={teachers} />}
             />
             <Route
               path="meetings/teachers/:id/students/:student_id"
