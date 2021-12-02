@@ -12,7 +12,7 @@ const StudentsList = ({ teacher }) => {
     navigate(`/teachers/${teacher.id}/students/${student.id}/meetings`);
   }
 
-  const studentComponents = teacher.students_list.map((student) => (
+  const studentComponents = teacher.students.map((student) => (
     <ListItem button key={nanoid()} onClick={() => handleClick(student)}>
       <ListItemText primary={student.first_name + " " + student.last_name} />
     </ListItem>
