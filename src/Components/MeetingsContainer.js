@@ -24,7 +24,7 @@ const MeetingsContainer = ({ teachers, students }) => {
 
   useEffect(() => {
     fetch(
-      `http://localhost:9292/teachers/${teacherId}/students/${studentId}/meetings`
+      `https://frozen-oasis-63947.herokuapp.com/teachers/${teacherId}/students/${studentId}/meetings`
     )
       .then((resp) => resp.json())
       .then((meetings) => {
