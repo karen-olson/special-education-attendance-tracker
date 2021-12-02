@@ -19,11 +19,11 @@ const App = () => {
   const [students, setStudents] = useState([]);
 
   useEffect(() => {
-    fetch("teachers")
+    fetch("/teachers")
       .then((resp) => resp.json())
       .then((teachers) => setTeachers(teachers));
 
-    fetch("students")
+    fetch("/students")
       .then((resp) => resp.json())
       .then((students) => setStudents(students));
   }, []);
@@ -37,7 +37,7 @@ const App = () => {
       body: JSON.stringify(newMeeting),
     };
 
-    fetch("meetings", configObj).then((resp) =>
+    fetch("/meetings", configObj).then((resp) =>
       resp.json().then((meeting) => console.log(meeting))
     );
   }
