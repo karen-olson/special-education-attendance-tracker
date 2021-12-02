@@ -49,9 +49,17 @@ const MeetingsContainer = ({ teachers, students }) => {
     />
   ));
 
+  const totalNumberOfMinutes = meetingsToDisplay
+    .map((meeting) => meeting.duration)
+    .reduce((a, b) => a + b, 0);
+
+  const firstMeeting = meetingsToDisplay[meetingsToDisplay.length - 1];
+
   return (
     <>
-      {teachers.length > 0 && students.length > 0 ? (
+      {teachers.length > 0 &&
+      students.length > 0 &&
+      meetingsToDisplay.length > 0 ? (
         <>
           <Container maxWidth="md">
             <Typography variant="h4" gutterBottom align="center">
@@ -71,6 +79,13 @@ const MeetingsContainer = ({ teachers, students }) => {
                 />
               </AvatarGroup>
             </Container>
+            <br />
+            <Typography variant="body1">
+              {teacherName} has seen {studentName} for a total of{" "}
+              {totalNumberOfMinutes} minutes since{" "}
+              {firstMeeting.date.split("").slice(0, 10).join("")}
+            </Typography>
+            <br />
             <Typography variant="body1">
               Meetings between {teacherName} ({teacher.specialty}) and{" "}
               {studentName}:
