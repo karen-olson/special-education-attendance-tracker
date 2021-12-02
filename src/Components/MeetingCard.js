@@ -20,9 +20,7 @@ const MeetingCard = ({ meeting, teacher, student, handleDeleteMeeting }) => {
     fetch(
       `https://frozen-oasis-63947.herokuapp.com/meetings/${meeting.id}`,
       configObj
-    )
-      .then((resp) => resp.json())
-      .then((meeting) => handleDeleteMeeting(meeting));
+    ).then(() => handleDeleteMeeting(meeting));
   }
 
   return (
