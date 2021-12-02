@@ -8,7 +8,6 @@ import { IconButton } from "@mui/material";
 import { Typography } from "@mui/material";
 
 const MeetingCard = ({ meeting, teacher, student, handleDeleteMeeting }) => {
-  
   const configObj = {
     method: "DELETE",
     headers: {
@@ -30,9 +29,7 @@ const MeetingCard = ({ meeting, teacher, student, handleDeleteMeeting }) => {
         aria-controls="panel1a-content"
         id="panel1a-header"
       >
-        <Typography>
-          {meeting.created_at.split("").slice(0, 10).join("")}
-        </Typography>
+        <Typography>{meeting.date.split("").slice(0, 10).join("")}</Typography>
       </AccordionSummary>
       <AccordionDetails>
         <Typography>

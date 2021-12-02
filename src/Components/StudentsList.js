@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
+import ClipLoader from "react-spinners/ClipLoader";
 import { nanoid } from "nanoid";
 import { useNavigate } from "react-router-dom";
 
@@ -8,7 +9,7 @@ const StudentsList = ({ teacher }) => {
   const navigate = useNavigate();
 
   function handleClick(student) {
-    navigate(`/meetings/teachers/${teacher.id}/students/${student.id}`);
+    navigate(`/teachers/${teacher.id}/students/${student.id}/meetings`);
   }
 
   const studentComponents = teacher.students_list.map((student) => (
@@ -17,6 +18,16 @@ const StudentsList = ({ teacher }) => {
     </ListItem>
   ));
 
-  return <div>{studentComponents}</div>;
+  return (
+    <>
+      {teacher ? (
+        <>
+          <div>{studentComponents}</div>
+        </>
+      ) : (
+        <ClipLoader color="blue" loading="true" size={150} />
+      )}
+    </>
+  );
 };
 export default StudentsList;

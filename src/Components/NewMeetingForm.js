@@ -11,6 +11,9 @@ import Select from "@mui/material/Select";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import GroupIcon from "@mui/icons-material/Group";
+// import DateAdapter from "@mui/lab/AdapterDateFns";
+// import LocalizationProvider from "@mui/lab/LocalizationProvider";
+// import DesktopDatePicker from "@mui/lab/DesktopDatePicker";
 
 const theme = createTheme();
 
@@ -20,6 +23,7 @@ const NewMeetingForm = ({ teachers, students, onFormSubmit }) => {
     student_id: "",
     duration: "",
     notes: "",
+    date: new Date("2014-08-18T21:11:54"),
   });
 
   const handleChange = (event) => {
@@ -66,6 +70,16 @@ const NewMeetingForm = ({ teachers, students, onFormSubmit }) => {
           <Typography component="h1" variant="h5">
             Create a Meeting
           </Typography>
+          {/* <LocalizationProvider dateAdapter={DateAdapter}>
+            <DesktopDatePicker
+              label="Date desktop"
+              inputFormat="MM/dd/yyyy"
+              name="date"
+              value={formData["date"]}
+              onChange={handleChange}
+              renderInput={(params) => <TextField {...params} />}
+            />
+          </LocalizationProvider> */}
           <Box
             component="form"
             noValidate
@@ -126,21 +140,6 @@ const NewMeetingForm = ({ teachers, students, onFormSubmit }) => {
                   </MenuItem>
                   <MenuItem value={students[4].id}>
                     {students[4].first_name + " " + students[4].last_name}
-                  </MenuItem>
-                  <MenuItem value={students[5].id}>
-                    {students[5].first_name + " " + students[5].last_name}
-                  </MenuItem>
-                  <MenuItem value={students[6].id}>
-                    {students[6].first_name + " " + students[6].last_name}
-                  </MenuItem>
-                  <MenuItem value={students[7].id}>
-                    {students[7].first_name + " " + students[7].last_name}
-                  </MenuItem>
-                  <MenuItem value={students[8].id}>
-                    {students[8].first_name + " " + students[8].last_name}
-                  </MenuItem>
-                  <MenuItem value={students[9].id}>
-                    {students[9].first_name + " " + students[9].last_name}
                   </MenuItem>
                 </Select>
               </Grid>

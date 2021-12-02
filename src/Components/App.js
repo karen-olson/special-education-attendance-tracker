@@ -42,8 +42,6 @@ const App = () => {
     );
   }
 
-  console.log("teachers: ", teachers);
-
   const override = css`
     display: block;
     margin: 0 auto;
@@ -64,7 +62,7 @@ const App = () => {
               element={<AttendanceLogContainer teachers={teachers} />}
             />
             <Route
-              path="meetings/teachers/:id/students/:student_id"
+              path="teachers/:id/students/:student_id/meetings"
               element={
                 <MeetingsContainer teachers={teachers} students={students} />
               }

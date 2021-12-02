@@ -2,10 +2,13 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
+import Avatar from "@mui/material/Avatar";
+import AvatarGroup from "@mui/material/AvatarGroup";
+import ClipLoader from "react-spinners/ClipLoader";
+
 import MeetingCard from "./MeetingCard";
 
 const MeetingsContainer = ({ teachers, students }) => {
-  // Display all meetings between a teacher and a student (teacher.student[?].meetings)
   const [meetingsToDisplay, setMeetingsToDisplay] = useState([]);
 
   const params = useParams();
@@ -47,16 +50,39 @@ const MeetingsContainer = ({ teachers, students }) => {
   ));
 
   return (
-    <Container maxWidth="md">
-      <Typography variant="h4" gutterBottom align="center">
-        Meetings
-      </Typography>
-      <Typography variant="body1">
-        Meetings between {teacherName} ({teacher.specialty}) and {studentName}:
-      </Typography>
-      <br />
-      {meetingCards}
-    </Container>
+    <>
+      {teachers.length > 0 && students.length > 0 ? (
+        <>
+          <Container maxWidth="md">
+            <Typography variant="h4" gutterBottom align="center">
+              Meetings
+            </Typography>
+            <Container align="center" sx={{ align: "center" }}>
+              <AvatarGroup max={4}>
+                <Avatar
+                  alt={teacherName}
+                  src={teacher.image_url}
+                  sx={{ width: 64, height: 64 }}
+                />
+                <Avatar
+                  alt={studentName}
+                  src={student.image_url}
+                  sx={{ width: 64, height: 64 }}
+                />
+              </AvatarGroup>
+            </Container>
+            <Typography variant="body1">
+              Meetings between {teacherName} ({teacher.specialty}) and{" "}
+              {studentName}:
+            </Typography>
+            <br />
+            {meetingCards}
+          </Container>
+        </>
+      ) : (
+        <ClipLoader color="blue" loading="true" size={150} />
+      )}
+    </>
   );
 };
 
