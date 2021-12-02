@@ -8,7 +8,7 @@ import ClipLoader from "react-spinners/ClipLoader";
 
 import NavTabs from "./NavTabs";
 import Home from "./Home";
-import NewMeetingForm from "./NewMeetingForm";
+import MeetingForm from "./MeetingForm";
 import MeetingsContainer from "./MeetingsContainer";
 import AttendanceLogContainer from "./AttendanceLogContainer";
 
@@ -17,6 +17,7 @@ const App = () => {
 
   const [teachers, setTeachers] = useState([]);
   const [students, setStudents] = useState([]);
+  const [meetings, setMeetings] = useState([]);
 
   useEffect(() => {
     fetch("https://frozen-oasis-63947.herokuapp.com/teachers")
@@ -26,6 +27,10 @@ const App = () => {
     fetch("https://frozen-oasis-63947.herokuapp.com/students")
       .then((resp) => resp.json())
       .then((students) => setStudents(students));
+
+    fetch("https://frozen-oasis-63947.herokuapp.com/meetings")
+      .then((resp) => resp.json())
+      .then((meetings) => setMeetings(meetings));
   }, []);
 
   function onFormSubmit(newMeeting) {
@@ -57,7 +62,6 @@ const App = () => {
           <Routes>
             <Route index path="/" element={<Home />} />
             <Route
-              // index
               path="attendance-logs"
               element={<AttendanceLogContainer teachers={teachers} />}
             />
@@ -68,9 +72,20 @@ const App = () => {
               }
             />
             <Route
+              path="meetings/:id/edit"
+              element={
+                <MeetingForm
+                  teachers={teachers}
+                  students={students}
+                  meetings={meetings}
+                  onFormSubmit={onFormSubmit}
+                />
+              }
+            />
+            <Route
               path="meetings/new"
               element={
-                <NewMeetingForm
+                <MeetingForm
                   teachers={teachers}
                   students={students}
                   onFormSubmit={onFormSubmit}

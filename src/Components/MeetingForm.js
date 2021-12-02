@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
@@ -17,14 +18,29 @@ import GroupIcon from "@mui/icons-material/Group";
 
 const theme = createTheme();
 
-const NewMeetingForm = ({ teachers, students, onFormSubmit }) => {
-  const [formData, setFormData] = React.useState({
+const MeetingForm = ({ teachers, students, meetings, onFormSubmit }) => {
+  const defaultFormData = {
     teacher_id: "",
     student_id: "",
     duration: "",
     notes: "",
-    date: new Date("2014-08-18T21:11:54"),
-  });
+  };
+
+  const [formData, setFormData] = useState(defaultFormData);
+
+  const params = useParams();
+
+  useEffect(() => {
+    if (params.id && meetings.length > 0) {
+      const meetingToEdit = meetings.find(
+        (meeting) => meeting.id === parseInt(params.id)
+      );
+      console.log("meeting to edit: ", meetingToEdit);
+      setFormData(meetingToEdit);
+    } else {
+      setFormData(defaultFormData);
+    }
+  }, [params, meetings]);
 
   const handleChange = (event) => {
     const updatedFormData = {
@@ -46,12 +62,7 @@ const NewMeetingForm = ({ teachers, students, onFormSubmit }) => {
 
     onFormSubmit(parsedData);
 
-    setFormData({
-      teacher_id: "",
-      student_id: "",
-      duration: "",
-      notes: "",
-    });
+    setFormData(defaultFormData);
   };
 
   return (
@@ -68,7 +79,7 @@ const NewMeetingForm = ({ teachers, students, onFormSubmit }) => {
         >
           <GroupIcon fontSize="large" />
           <Typography component="h1" variant="h5">
-            Create a Meeting
+            {params.id ? "Edit Meeting" : "Create a Meeting"}
           </Typography>
           {/* <LocalizationProvider dateAdapter={DateAdapter}>
             <DesktopDatePicker
@@ -185,4 +196,4 @@ const NewMeetingForm = ({ teachers, students, onFormSubmit }) => {
   );
 };
 
-export default NewMeetingForm;
+export default MeetingForm;
