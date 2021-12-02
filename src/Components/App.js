@@ -58,7 +58,7 @@ const App = () => {
             <Route index path="/" element={<Home />} />
             <Route
               // index
-              path="rosters"
+              path="attendance-logs"
               element={<AttendanceLogContainer teachers={teachers} />}
             />
             <Route
