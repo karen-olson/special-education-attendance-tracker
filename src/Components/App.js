@@ -19,11 +19,11 @@ const App = () => {
   const [students, setStudents] = useState([]);
 
   useEffect(() => {
-    fetch("/teachers")
+    fetch("http://frozen-oasis-63947.herokuapp.com/teachers")
       .then((resp) => resp.json())
       .then((teachers) => setTeachers(teachers));
 
-    fetch("/students")
+    fetch("http://frozen-oasis-63947.herokuapp.com/students")
       .then((resp) => resp.json())
       .then((students) => setStudents(students));
   }, []);
@@ -37,7 +37,7 @@ const App = () => {
       body: JSON.stringify(newMeeting),
     };
 
-    fetch("/meetings", configObj).then((resp) =>
+    fetch("http://frozen-oasis-63947.herokuapp.com/meetings", configObj).then((resp) =>
       resp.json().then((meeting) => console.log(meeting))
     );
   }

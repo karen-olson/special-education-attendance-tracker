@@ -23,7 +23,7 @@ const MeetingsContainer = ({ teachers, students }) => {
   const studentName = student.first_name + " " + student.last_name;
 
   useEffect(() => {
-    fetch(`/teachers/${teacherId}/students/${studentId}/meetings`)
+    fetch(`http://frozen-oasis-63947.herokuapp.com/teachers/${teacherId}/students/${studentId}/meetings`)
       .then((resp) => resp.json())
       .then((meetings) => {
         setMeetingsToDisplay(meetings);
