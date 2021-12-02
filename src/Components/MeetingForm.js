@@ -40,7 +40,7 @@ const MeetingForm = ({ teachers, students, meetings, onFormSubmit }) => {
     } else {
       setFormData(defaultFormData);
     }
-  }, [params, meetings]);
+  }, [params, meetings, defaultFormData]);
 
   const handleChange = (event) => {
     const updatedFormData = {
