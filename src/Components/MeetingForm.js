@@ -12,9 +12,9 @@ import Select from "@mui/material/Select";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import GroupIcon from "@mui/icons-material/Group";
-// import DateAdapter from "@mui/lab/AdapterDateFns";
-// import LocalizationProvider from "@mui/lab/LocalizationProvider";
-// import DesktopDatePicker from "@mui/lab/DesktopDatePicker";
+import DateAdapter from "@mui/lab/AdapterDateFns";
+import LocalizationProvider from "@mui/lab/LocalizationProvider";
+import DesktopDatePicker from "@mui/lab/DesktopDatePicker";
 
 const theme = createTheme();
 
@@ -46,12 +46,23 @@ const MeetingForm = ({ teachers, students, meetings, onFormSubmit }) => {
   }, [params, meetings]);
 
   const handleChange = (event) => {
-    const updatedFormData = {
-      ...formData,
-      [event.target.name]: event.target.value,
-    };
+    let updatedFormData;
+
+    if (!event.target) {
+      updatedFormData = {
+        ...formData,
+        date: event,
+      };
+    } else {
+      updatedFormData = {
+        ...formData,
+        [event.target.name]: event.target.value,
+      };
+    }
     setFormData(updatedFormData);
   };
+
+  console.log("form data: ", formData);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -89,16 +100,6 @@ const MeetingForm = ({ teachers, students, meetings, onFormSubmit }) => {
           <Typography component="h1" variant="h5">
             {params.id ? "Edit Meeting" : "Create a Meeting"}
           </Typography>
-          {/* <LocalizationProvider dateAdapter={DateAdapter}>
-            <DesktopDatePicker
-              label="Date desktop"
-              inputFormat="MM/dd/yyyy"
-              name="date"
-              value={formData["date"]}
-              onChange={handleChange}
-              renderInput={(params) => <TextField {...params} />}
-            />
-          </LocalizationProvider> */}
           <Box
             component="form"
             noValidate
@@ -161,6 +162,18 @@ const MeetingForm = ({ teachers, students, meetings, onFormSubmit }) => {
                     {students[4].first_name + " " + students[4].last_name}
                   </MenuItem>
                 </Select>
+              </Grid>
+              <Grid item xs={12}>
+                <LocalizationProvider dateAdapter={DateAdapter}>
+                  <DesktopDatePicker
+                    label="Date desktop"
+                    inputFormat="MM/dd/yyyy"
+                    name="date"
+                    value={formData["date"]}
+                    onChange={handleChange}
+                    renderInput={(params) => <TextField {...params} />}
+                  />
+                </LocalizationProvider>
               </Grid>
               <Grid item xs={12}>
                 <TextField
