@@ -19,14 +19,12 @@ import GroupIcon from "@mui/icons-material/Group";
 const theme = createTheme();
 
 const MeetingForm = ({ teachers, students, meetings, onFormSubmit }) => {
-  const defaultFormData = {
+  const [formData, setFormData] = useState({
     teacher_id: "",
     student_id: "",
     duration: "",
     notes: "",
-  };
-
-  const [formData, setFormData] = useState(defaultFormData);
+  });
 
   const params = useParams();
 
@@ -38,9 +36,14 @@ const MeetingForm = ({ teachers, students, meetings, onFormSubmit }) => {
       console.log("meeting to edit: ", meetingToEdit);
       setFormData(meetingToEdit);
     } else {
-      setFormData(defaultFormData);
+      setFormData({
+        teacher_id: "",
+        student_id: "",
+        duration: "",
+        notes: "",
+      });
     }
-  }, [params, meetings, defaultFormData]);
+  }, [params, meetings]);
 
   const handleChange = (event) => {
     const updatedFormData = {
