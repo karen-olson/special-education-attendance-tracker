@@ -87,9 +87,9 @@ const MeetingsContainer = ({ teachers, students }) => {
             <br />
             <br />
             <Typography variant="h6">
-              {teacherName} has seen {studentName} for a total of{" "}
-              {totalNumberOfMinutes} minutes since{" "}
-              {firstMeeting.date.split("").slice(0, 10).join("")}.
+              {teacherName} has provided a total of {totalNumberOfMinutes}{" "}
+              minutes of IEP services to {studentName}
+              since {firstMeeting.date.split("").slice(0, 10).join("")}.
             </Typography>
             <br />
             <Typography variant="body1">
