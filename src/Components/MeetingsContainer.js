@@ -5,6 +5,7 @@ import Container from "@mui/material/Container";
 import Avatar from "@mui/material/Avatar";
 import AvatarGroup from "@mui/material/AvatarGroup";
 import ClipLoader from "react-spinners/ClipLoader";
+import { Box } from "@material-ui/core";
 
 import MeetingCard from "./MeetingCard";
 
@@ -62,35 +63,38 @@ const MeetingsContainer = ({ teachers, students }) => {
       meetingsToDisplay.length > 0 ? (
         <>
           <Container maxWidth="md">
-            <Typography variant="h4" gutterBottom align="center">
-              Meetings
+            <Typography variant="h4" mt={9} mb={3} align="center">
+              Meetings with {studentName}
             </Typography>
-            <Container align="center" sx={{ align: "center" }}>
-              <AvatarGroup max={4}>
-                <Avatar
-                  alt={teacherName}
-                  src={teacher.image_url}
-                  sx={{ width: 64, height: 64 }}
-                />
-                <Avatar
-                  alt={studentName}
-                  src={student.image_url}
-                  sx={{ width: 64, height: 64 }}
-                />
-              </AvatarGroup>
+            <Container align="center">
+              <Box display="flex" width={500} height={150}>
+                <Box m="auto">
+                  <AvatarGroup max={4}>
+                    <Avatar
+                      alt={teacherName}
+                      src={teacher.image_url}
+                      sx={{ width: 150, height: 150 }}
+                    />
+                    <Avatar
+                      alt={studentName}
+                      src={student.image_url}
+                      sx={{ width: 150, height: 150 }}
+                    />
+                  </AvatarGroup>
+                </Box>
+              </Box>
             </Container>
             <br />
-            <Typography variant="body1">
+            <br />
+            <Typography variant="h6">
               {teacherName} has seen {studentName} for a total of{" "}
               {totalNumberOfMinutes} minutes since{" "}
               {firstMeeting.date.split("").slice(0, 10).join("")}.
             </Typography>
             <br />
             <Typography variant="body1">
-              Meetings between {teacherName} ({teacher.specialty}) and{" "}
-              {studentName}:
+              <em>Select a meeting date to view details.</em>
             </Typography>
-            <br />
             {meetingCards}
           </Container>
         </>
