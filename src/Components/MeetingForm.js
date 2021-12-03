@@ -65,7 +65,12 @@ const MeetingForm = ({ teachers, students, meetings, onFormSubmit }) => {
 
     onFormSubmit(parsedData);
 
-    setFormData(defaultFormData);
+    setFormData({
+      teacher_id: "",
+      student_id: "",
+      duration: "",
+      notes: "",
+    });
   };
 
   return (
