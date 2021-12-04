@@ -33,13 +33,14 @@ const App = () => {
       .then((meetings) => setMeetings(meetings));
   }, []);
 
-  function onFormSubmit(newMeeting) {
+  function onFormSubmit(formData, meetingId) {
+    debugger;
     const configObj = {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(newMeeting),
+      body: JSON.stringify(formData),
     };
 
     fetch("https://frozen-oasis-63947.herokuapp.com/meetings", configObj).then(

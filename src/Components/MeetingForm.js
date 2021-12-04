@@ -24,6 +24,7 @@ const MeetingForm = ({ teachers, students, meetings, onFormSubmit }) => {
     student_id: "",
     duration: "",
     notes: "",
+    date: new Date(),
   });
 
   const params = useParams();
@@ -41,6 +42,7 @@ const MeetingForm = ({ teachers, students, meetings, onFormSubmit }) => {
         student_id: "",
         duration: "",
         notes: "",
+        date: new Date(),
       });
     }
   }, [params, meetings]);
@@ -74,13 +76,14 @@ const MeetingForm = ({ teachers, students, meetings, onFormSubmit }) => {
       duration: parseInt(formData.duration),
     };
 
-    onFormSubmit(parsedData);
+    onFormSubmit(parsedData, params.id);
 
     setFormData({
       teacher_id: "",
       student_id: "",
       duration: "",
       notes: "",
+      date: new Date(),
     });
   };
 
