@@ -29,7 +29,7 @@ const MeetingCard = ({ meeting, teacher, student, handleDeleteMeeting }) => {
         aria-controls="panel1a-content"
         id="panel1a-header"
       >
-        <Typography>{meeting.date.split("").slice(0, 10).join("")}</Typography>
+        <Typography>{meeting.formatted_date}</Typography>
       </AccordionSummary>
       <AccordionDetails>
         <Typography>
