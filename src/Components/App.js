@@ -33,8 +33,22 @@ const App = () => {
       .then((meetings) => setMeetings(meetings));
   }, []);
 
-  function onFormSubmit(formData, meetingId) {
-    debugger;
+  function onEditFormSubmit(formData, meetingId) {
+    const configObj = {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    };
+
+    fetch(
+      `https://frozen-oasis-63947.herokuapp.com/meetings/${meetingId}`,
+      configObj
+    ).then((resp) => resp.json().then((meeting) => console.log(meeting)));
+  }
+
+  function onFormSubmit(formData) {
     const configObj = {
       method: "POST",
       headers: {
@@ -79,7 +93,7 @@ const App = () => {
                   teachers={teachers}
                   students={students}
                   meetings={meetings}
-                  onFormSubmit={onFormSubmit}
+                  onFormSubmit={onEditFormSubmit}
                 />
               }
             />

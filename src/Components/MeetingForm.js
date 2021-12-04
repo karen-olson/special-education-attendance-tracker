@@ -76,7 +76,7 @@ const MeetingForm = ({ teachers, students, meetings, onFormSubmit }) => {
       duration: parseInt(formData.duration),
     };
 
-    onFormSubmit(parsedData, params.id);
+    params.id ? onFormSubmit(parsedData, params.id) : onFormSubmit(parsedData);
 
     setFormData({
       teacher_id: "",
