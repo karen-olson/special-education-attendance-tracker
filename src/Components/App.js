@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useNavigate } from "react-router-dom";
 
 import CssBaseline from "@mui/material/CssBaseline";
 import { css } from "@emotion/react";
@@ -13,8 +13,6 @@ import MeetingsContainer from "./MeetingsContainer";
 import AttendanceLogContainer from "./AttendanceLogContainer";
 
 const App = () => {
-  // Update API so it sends nested students from /teachers
-
   const [teachers, setTeachers] = useState([]);
   const [students, setStudents] = useState([]);
   const [meetings, setMeetings] = useState([]);
@@ -33,6 +31,8 @@ const App = () => {
       .then((meetings) => setMeetings(meetings));
   }, []);
 
+  const navigate = useNavigate();
+
   function onEditFormSubmit(formData, meetingId) {
     const configObj = {
       method: "PATCH",
@@ -45,13 +45,17 @@ const App = () => {
     fetch(
       `https://frozen-oasis-63947.herokuapp.com/meetings/${meetingId}`,
       configObj
-    ).then((resp) =>
-      resp
-        .json()
-        .then((meeting) =>
-          console.log("Your meeting was successfully edited: ", meeting)
-        )
-    );
+    ).then((resp) => {
+      if (resp.ok) {
+        resp
+          .json()
+          .then(
+            navigate(
+              `/teachers/${formData.teacher_id}/students/${formData.student_id}/meetings`
+            )
+          );
+      }
+    });
   }
 
   function onFormSubmit(formData) {
