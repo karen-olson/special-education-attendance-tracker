@@ -4,7 +4,7 @@ An attendance tracker for special education supervisors to track IEP service com
 
 ## Video Walkthrough
 
-Check out the video walkthrough of this project to see its features in action.
+Check out the [video walkthrough](https://www.loom.com/share/c5bece8bf7594606aa34785b23866203) of this project to see its features in action.
 
 ## Deployed Site and Backend
 
