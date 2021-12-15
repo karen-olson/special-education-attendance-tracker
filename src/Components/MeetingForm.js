@@ -64,8 +64,6 @@ const MeetingForm = ({ teachers, students, meetings, onFormSubmit }) => {
     setFormData(updatedFormData);
   };
 
-  console.log("form data: ", formData);
-
   const handleSubmit = (event) => {
     event.preventDefault();
 
