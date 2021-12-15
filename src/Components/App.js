@@ -45,7 +45,13 @@ const App = () => {
     fetch(
       `https://frozen-oasis-63947.herokuapp.com/meetings/${meetingId}`,
       configObj
-    ).then((resp) => resp.json().then((meeting) => console.log(meeting)));
+    ).then((resp) =>
+      resp
+        .json()
+        .then((meeting) =>
+          console.log("Your meeting was successfully edited: ", meeting)
+        )
+    );
   }
 
   function onFormSubmit(formData) {
@@ -58,7 +64,12 @@ const App = () => {
     };
 
     fetch("https://frozen-oasis-63947.herokuapp.com/meetings", configObj).then(
-      (resp) => resp.json().then((meeting) => console.log(meeting))
+      (resp) =>
+        resp
+          .json()
+          .then((meeting) =>
+            console.log("Your meeting was successfully submitted: ", meeting)
+          )
     );
   }
 
