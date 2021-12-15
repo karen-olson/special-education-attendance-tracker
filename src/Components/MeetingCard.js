@@ -10,8 +10,6 @@ import { IconButton } from "@mui/material";
 import { Typography } from "@mui/material";
 
 const MeetingCard = ({ meeting, teacher, student, handleDeleteMeeting }) => {
-  // const configObj =
-
   function handleDelete(e) {
     fetch(`https://frozen-oasis-63947.herokuapp.com/meetings/${meeting.id}`, {
       method: "DELETE",

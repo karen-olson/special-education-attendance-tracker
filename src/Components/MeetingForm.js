@@ -34,6 +34,13 @@ const MeetingForm = ({ teachers, students, meetings, onFormSubmit }) => {
       const meetingToEdit = meetings.find(
         (meeting) => meeting.id === parseInt(params.id)
       );
+      setFormData({
+        teacher_id: meetingToEdit.teacher_id,
+        student_id: meetingToEdit.student_id,
+        duration: meetingToEdit.duration,
+        notes: meetingToEdit.notes,
+        date: meetingToEdit.date,
+      });
     } else {
       setFormData({
         teacher_id: "",
