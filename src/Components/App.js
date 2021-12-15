@@ -68,12 +68,17 @@ const App = () => {
     };
 
     fetch("https://frozen-oasis-63947.herokuapp.com/meetings", configObj).then(
-      (resp) =>
-        resp
-          .json()
-          .then((meeting) =>
-            console.log("Your meeting was successfully submitted: ", meeting)
-          )
+      (resp) => {
+        if (resp.ok) {
+          resp
+            .json()
+            .then(
+              navigate(
+                `/teachers/${formData.teacher_id}/students/${formData.student_id}/meetings`
+              )
+            );
+        }
+      }
     );
   }
 
