@@ -6,11 +6,9 @@ An attendance tracker for special education supervisors to track IEP service com
 
 Check out the [video walkthrough](https://www.loom.com/share/c5bece8bf7594606aa34785b23866203) of this project to see its features in action.
 
-## Deployed Site and Backend
+## Backend
 
-See the [deployed site](https://special-education-attendance-tracker.netlify.app/), hosted on Netlify.
-
-View the [API](https://frozen-oasis-63947.herokuapp.com/teachers), created with Ruby on Rails and deployed with Heroku, and the [API repo](https://github.com/karen-olson/special-education-attendance-tracker-API).
+View the [Backend repository](https://github.com/karen-olson/special-education-attendance-tracker-API), an API created with Ruby on Rails.
 
 ## Packages
 
